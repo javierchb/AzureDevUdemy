@@ -1,0 +1,99 @@
+########## Azure Resource Manager
+
+
+* General
+> Is the deploymeny and managment service for Azure
+> It provides a managment layer that enables to create,
+update and delete resources.
+> Features managment provides access control, locks and tags to secure
+and organize resources.
+> Could use API for use Resource Manager
+
+
+* ARM Clients and Interfaces
+> Commands through any of azure apis, tools or SDKs are handled through the same API.
+this ensures consistency.
+For this can we use:
+> Azure Portal, Web interface.
+> Azure PowerShell and CLI, commands line for azure, bash scripting.
+> REST Clients, consuming Azure APIs.
+
+
+* Key terms
+> resource, an item or service that provides: Virtual Machie, Storage Accounts, Web Apps,
+Database, and virtual networks, these are examples of resource.
+
+> resource group, is a logical container to group related resources, like use Database or storage
+accounts in the same resource.
+
+> declarative syntax, Syntax thats lets you state what you want to provision to the resource,
+allow to modify configuration without command lines or a sequence of programming commands.
+    > ARM Templates, by JSON file that define one ore more resources to deploy to a resource group,
+    subscription, managment group, or tenant.
+    > Bicep, file for declaratively deploying Azure resources, this last is optiized for IaaC.
+
+> Using Azure Portal
+    > Dashboard / Panel, allow to order all the resources and groups.
+
+> Using Azure Cli
+    > Could learn it by follow microsoft documents or learn path.
+    > Azure Cli could be used in portal azure or by cmd by bach scripting.
+
+> Section review
+    > Azure Portal is easy to use.
+    > Azure Cli and azure portal Cli had a long curve of learning.
+
+########## Azure App Services
+
+* Section Overview
+> Learn azure app service key components.
+> Undestarding diferents hosting models.
+> Learn web app deployment tecnhiques.
+> Explore authentication and authorization.
+> Managing Azure App Service using Cli.
+* Examinig Azure App Service.
+> Azure App Service is a HTTP based service for hosting web applications, we can host:
+    > REST Apis, back-ends, Web Apps, etc.
+    > Support many programming languages like, .NET/.NET Core, NodeJS, Java, PHP, Python, etc.
+> Support autoscaling to adjust requests loads.
+> Support windows and linux runtime.
+> Support automated and manual deployment model.
+> PaaS offering.
+
+* Create an Azure App Service
+> App services Construct, work for other services like Azure Functions.
+> When you create an Azure App Service you will pay for the type of plan do you use, because
+this specified the hardware that will be used for your web app.
+> Can you add a github project for you web app.
+> Publish web app in azure app web service with azure CLI
+    > Go to your netcore web app directory and follow the next commands:
+        (Obligatory)
+        1. dotnet publish -o publish, this publish the webapp in a directory named "publish" (-o publish)
+        2. cd publish, go to publish directory.
+        3. Compress-Archive ( . | * ) publish.zip, compress all content directory.        
+        4. az webapp deployment source config-zip --src .\publish.zip -n webappName -g resourceGroupName
+        5. az webapp browse -n webAppName -g resourceGroupName
+            > when i tried to browse web app this error happen: "You do not have permission to view this directory or page"
+            > fix error:
+                1. Go to webapp service in azure portal.
+                2. Select advanced tools and continue.
+                3. Select debug console dropdown button and select CMD.
+                    > As we can see, Azure Web app Service use the hierarchy of namespace to deploy or webapp, by this way
+                    azure know how to show the webapp by finding files in wwwroot directory but in this case when we
+                    published our app the files are not in the wwwroot directory, they are in another directory
+                    names "publih" inside of wwwroot. So now we need to move the file from "publish" to "wwwroot".
+                    > Is not necesary delete the publish directory in this part, we just need to publish our webapp again on
+                    Azure Web App Service.
+                4. Instead of use Compress-Archive . publish.zip, we must replace the dot "." with an asterisc or star "*",
+                this will compress just the files and not the directory with all the files.                
+                
+        (Optional, use Az CLI to create resource group, appservice(plan) and webapp)
+        1. az group create --location eastus2 --resource-group az-group-rg (name resource)        
+        2. az appservice plan create -g az-group-rg -n az-trev-plan (our name app service plan)
+        3. az webapp create -g az-group-rg -p az-trev-plan -n az-webapp-trev (our name webapp)
+
+*
+>
+    >
+
+

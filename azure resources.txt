@@ -1,0 +1,8 @@
+> subscription:
+    > 1. Pay as you go
+        > resource group:
+            > 1. az-dev-resource-ud
+                > services:
+                    > 1. Webapp: devappserviceud                
+            > 2. 
+                    
